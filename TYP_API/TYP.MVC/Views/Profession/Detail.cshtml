@@ -1,0 +1,392 @@
+﻿@using TYP.Service.DTOs.ProfessionDTOs;
+@using TYP.Service.DTOs.PredmetProfessionDTOs;
+@model ProfessionGetDTO
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="col-lg-12">
+    <div class="card mb-4">
+
+        <div class="card-body">
+            <h3>Halls</h3>
+            <a class="btn btn-success mb-3" asp-controller="PredmetProfession" asp-action="Create" asp-route-id="@Url.ActionContext.RouteData.Values["id"]">Create</a>
+            <button class="btn btn-success selection-deletion-btn mb-3">Delete selected row</button>
+            <div class="table-responsive">
+                <table class="table display table-bordered table-striped table-hover selection-deletion">
+                    <thead>
+                        <tr>
+                            <th scope="col">Code</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Credit</th>
+                            <th scope="col">GeneralHours</th>
+                            <th scope="col">OutOfAuditoryHours</th>
+                            <th scope="col">AuditoryHours</th>
+                            <th scope="col">Lecturer</th>
+                            <th scope="col">Seminar</th>
+                            <th scope="col">Laboratory</th>
+                            <th scope="col">IsPrerequisite</th>
+                            <th scope="col">Session</th>
+                            <th scope="col">WeeklyLoad</th>
+                        </tr>
+                    </thead>
+
+                    <thead>
+                        @{
+                            int credit = 0;
+                            int generalHours = 0;
+                            int outOfAuditoryHours = 0;
+                            int auditoryHours = 0;
+                            int lecturer = 0;
+                            int seminar = 0;
+                            int laboratory = 0;
+                        }
+                        @foreach (var item in Model.PredmetProfessions)
+                        {
+                            if (item.CategoryId == 1)
+                            {
+                                credit += item.Credit;
+                                generalHours += item.GeneralHours;
+                                outOfAuditoryHours += item.OutOfAuditoryHours;
+                                auditoryHours += item.AuditoryHours;
+                                lecturer += item.Lecturer;
+                                seminar += item.Seminar;
+                                laboratory += item.Laboratory;
+                               
+                            }
+                        } 
+                        <tr>
+                            <th class="text-danger" scope="colgroup"> </th>
+                            <th class="text-danger" scope="colgroup">Umumi Fennler</th>
+                            <th class="text-danger" scope="col">@credit</th>
+                            <th class="text-danger" scope="col">@generalHours</th>
+                            <th class="text-danger" scope="col">@outOfAuditoryHours</th>
+                            <th class="text-danger" scope="col">@auditoryHours</th>
+                            <th class="text-danger" scope="col">@lecturer</th>
+                            <th class="text-danger" scope="col">@seminar</th>
+                            <th class="text-danger" scope="col">@laboratory</th>
+                            <th scope="col"> </th>
+                            <th scope="col"> </th>
+                            <th scope="col"> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.PredmetProfessions)
+                        {
+                            if (item.CategoryId == 1)
+                            {
+                                <tr>
+                                    <td>@item.Code</td>
+                                    <td>@item.PredmetName</td>
+                                    <td>@item.Credit</td>
+                                    <td>@item.GeneralHours</td>
+                                    <td>@item.OutOfAuditoryHours</td>
+                                    <td>@item.AuditoryHours</td>
+                                    <td>@item.Lecturer</td>
+                                    <td>@item.Seminar</td>
+                                    <td>@item.Laboratory</td>
+                                    <td>@item.IsPrerequisite</td>
+                                    <td>@item.Session</td>
+                                    <td>@item.WeeklyLoad</td>
+                                </tr>
+                            }
+                        }                
+                    </tbody>
+
+                    <thead>
+                        @{
+                            int credit1 = 0;
+                            int generalHours1 = 0;
+                            int outOfAuditoryHours1 = 0;
+                            int auditoryHours1 = 0;
+                            int lecturer1 = 0;
+                            int seminar1 = 0;
+                            int laboratory1 = 0;
+                        }
+                        @foreach (var orderby in Model.OrderBys)
+                        {
+                            List<PredmetProfessionGetDTO> PPList = new List<PredmetProfessionGetDTO>();
+                            foreach (var item in Model.PredmetProfessions)
+                            {
+                                if (item.orderBy == orderby && item.CategoryId == 2)
+                                {
+                                    PPList.Add(item);
+                                }
+                            }
+                            if (PPList.Count() != 0)
+                            {
+                                credit1 += PPList[0].Credit;
+                                generalHours1 += PPList[0].GeneralHours;
+                                outOfAuditoryHours1 += PPList[0].OutOfAuditoryHours;
+                                auditoryHours1 += PPList[0].AuditoryHours;
+                                lecturer1 += PPList[0].Lecturer;
+                                seminar1 += PPList[0].Seminar;
+                                laboratory1 += PPList[0].Laboratory;
+                               
+                            }
+                        }
+                        <tr>
+                            <th class="text-danger" scope="colgroup"> </th>
+                            <th class="text-danger" scope="colgroup">Seçmə fənlər (ümumi fənlər üzrə)</th>
+                            <th class="text-danger" scope="col">@credit1</th>
+                            <th class="text-danger" scope="col">@generalHours1</th>
+                            <th class="text-danger" scope="col">@outOfAuditoryHours1</th>
+                            <th class="text-danger" scope="col">@auditoryHours1</th>
+                            <th class="text-danger" scope="col">@lecturer1</th>
+                            <th class="text-danger" scope="col">@seminar1</th>
+                            <th class="text-danger" scope="col">@laboratory1</th>
+                            <th scope="col"> </th>
+                            <th scope="col"> </th>
+                            <th scope="col"> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var orderby in Model.OrderBys)
+                        {
+                            List<PredmetProfessionGetDTO> PPList = new List<PredmetProfessionGetDTO>();
+                            foreach (var item in Model.PredmetProfessions)
+                            {
+                                if (item.orderBy == orderby && item.CategoryId == 2)
+                                {
+                                    PPList.Add(item);
+                                }
+                            }
+
+                            @if (PPList.Count() != 0)
+                               {
+                                <tr>
+                                    <td>
+                                        @foreach (var item in PPList)
+                                        {
+                                            @item.Code;
+                                            <br />
+                                        }
+                                    </td>
+                                    <td>
+                                        @{var countPredmet = 1;}
+                                        @foreach (var item in PPList)
+                                        {
+                                            <span >@countPredmet. @item.PredmetName</span>countPredmet++;
+                                            <br />
+                                        }
+                                    </td>
+                                
+                                    <td>@PPList[0].Credit</td>
+                                    <td>@PPList[0].GeneralHours</td>
+                                    <td>@PPList[0].OutOfAuditoryHours</td>
+                                    <td>@PPList[0].AuditoryHours</td>
+                                    <td>@PPList[0].Lecturer</td>
+                                    <td>@PPList[0].Seminar</td>
+                                    <td>@PPList[0].Laboratory</td>
+                                    <td>@PPList[0].IsPrerequisite</td>
+                                    <td>@PPList[0].Session</td>
+                                    <td>@PPList[0].WeeklyLoad</td>
+                                </tr>
+                               }
+                        }                
+                    </tbody>
+
+                    <thead>
+                        @{
+                            int credit2 = 0;
+                            int generalHours2 = 0;
+                            int outOfAuditoryHours2 = 0;
+                            int auditoryHours2 = 0;
+                            int lecturer2 = 0;
+                            int seminar2 = 0;
+                            int laboratory2 = 0;
+                        }
+                        @foreach (var item in Model.PredmetProfessions)
+                        {
+                            if (item.CategoryId == 3)
+                            {
+                                credit2 += item.Credit;
+                                generalHours2 += item.GeneralHours;
+                                outOfAuditoryHours2 += item.OutOfAuditoryHours;
+                                auditoryHours2 += item.AuditoryHours;
+                                lecturer2 += item.Lecturer;
+                                seminar2 += item.Seminar;
+                                laboratory2 += item.Laboratory;
+                               
+                            }
+                        } 
+                        <tr>
+                            <th class="text-danger" scope="colgroup"> </th>
+                            <th class="text-danger" scope="colgroup">İxtisas fənləri</th>
+                            <th class="text-danger" scope="col">@credit2</th>
+                            <th class="text-danger" scope="col">@generalHours2</th>
+                            <th class="text-danger" scope="col">@outOfAuditoryHours2</th>
+                            <th class="text-danger" scope="col">@auditoryHours2</th>
+                            <th class="text-danger" scope="col">@lecturer2</th>
+                            <th class="text-danger" scope="col">@seminar2</th>
+                            <th class="text-danger" scope="col">@laboratory2</th>
+                            <th scope="col"> </th>
+                            <th scope="col"> </th>
+                            <th scope="col"> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.PredmetProfessions)
+                        {
+                            if (item.CategoryId == 3)
+                            {
+                                <tr>
+                                    <td>@item.Code</td>
+                                    <td>@item.PredmetName</td>
+                                    <td>@item.Credit</td>
+                                    <td>@item.GeneralHours</td>
+                                    <td>@item.OutOfAuditoryHours</td>
+                                    <td>@item.AuditoryHours</td>
+                                    <td>@item.Lecturer</td>
+                                    <td>@item.Seminar</td>
+                                    <td>@item.Laboratory</td>
+                                    <td>@item.IsPrerequisite</td>
+                                    <td>@item.Session</td>
+                                    <td>@item.WeeklyLoad</td>
+                                </tr>
+                            }
+                        }                
+                    </tbody>
+
+                    <thead>
+                        @{
+                            int credit3 = 0;
+                            int generalHours3 = 0;
+                            int outOfAuditoryHours3 = 0;
+                            int auditoryHours3 = 0;
+                            int lecturer3 = 0;
+                            int seminar3 = 0;
+                            int laboratory3 = 0;
+                        }
+                        @foreach (var orderby in Model.OrderBys)
+                        {
+                            List<PredmetProfessionGetDTO> PPList = new List<PredmetProfessionGetDTO>();
+                            foreach (var item in Model.PredmetProfessions)
+                            {
+                                if (item.orderBy == orderby && item.CategoryId == 4)
+                                {
+                                    PPList.Add(item);
+                                }
+                            }
+                            if (PPList.Count() != 0)
+                            {
+                                credit3 += PPList[0].Credit;
+                                generalHours3 += PPList[0].GeneralHours;
+                                outOfAuditoryHours3 += PPList[0].OutOfAuditoryHours;
+                                auditoryHours3 += PPList[0].AuditoryHours;
+                                lecturer3 += PPList[0].Lecturer;
+                                seminar3 += PPList[0].Seminar;
+                                laboratory3 += PPList[0].Laboratory;
+                               
+                            }
+                        } 
+                        <tr>
+                            <th class="text-danger" scope="colgroup"> </th>
+                            <th class="text-danger" scope="colgroup">Seçmə fənlər (ixtisas fənləri üzrə)</th>
+                            <th class="text-danger" scope="col">@credit3</th>
+                            <th class="text-danger" scope="col">@generalHours3</th>
+                            <th class="text-danger" scope="col">@outOfAuditoryHours3</th>
+                            <th class="text-danger" scope="col">@auditoryHours3</th>
+                            <th class="text-danger" scope="col">@lecturer3</th>
+                            <th class="text-danger" scope="col">@seminar3</th>
+                            <th class="text-danger" scope="col">@laboratory3</th>
+                            <th scope="col"> </th>
+                            <th scope="col"> </th>
+                            <th scope="col"> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var orderby in Model.OrderBys)
+                        {
+                            List<PredmetProfessionGetDTO> PPList = new List<PredmetProfessionGetDTO>();
+                            foreach (var item in Model.PredmetProfessions)
+                            {
+                                if (item.orderBy == orderby && item.CategoryId == 4)
+                                {
+                                    PPList.Add(item);
+                                }
+                            }
+                            @if (PPList.Count() != 0)
+                               {
+                                <tr>
+                                    <td>
+                                        @foreach (var item in PPList)
+                                        {
+                                            @item.Code;
+                                            <br />
+                                        }
+                                    </td>
+                                    <td>
+                                        @{var countPredmet = 1;}
+                                        @foreach (var item in PPList)
+                                        {
+                                            <span >@countPredmet. @item.PredmetName</span>countPredmet++;
+                                            <br />
+                                        }
+                                    </td>
+                                
+                                    <td>@PPList[0].Credit</td>
+                                    <td>@PPList[0].GeneralHours</td>
+                                    <td>@PPList[0].OutOfAuditoryHours</td>
+                                    <td>@PPList[0].AuditoryHours</td>
+                                    <td>@PPList[0].Lecturer</td>
+                                    <td>@PPList[0].Seminar</td>
+                                    <td>@PPList[0].Laboratory</td>
+                                    <td>@PPList[0].IsPrerequisite</td>
+                                    <td>@PPList[0].Session</td>
+                                    <td>@PPList[0].WeeklyLoad</td>
+                                </tr>
+                               }
+                            
+                        }                
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+ </div>
+
+ @section Scripts{
+     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $(".delete-item").click(function (ev) {
+                ev.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let link = $(this).attr("href")
+                        fetch(link).then(response => response.json()).then(data => {
+                            if (data.status == 200) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                setTimeout(() =>
+                                { location.reload(true) }, 1000);
+                            }
+                            else {
+                                Swal.fire(
+                                    'Error!',
+                                    'Your file not Found.',
+                                    'Failed'
+                                )
+                            }
+                        })
+                     
+                    }
+                })
+            })
+
+        })
+    </script>
+ } 

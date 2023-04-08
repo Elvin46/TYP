@@ -1,0 +1,107 @@
+﻿@using TYP.Service.DTOs.PredmetProfessionDTOs;
+@model PredmetProfessionGetAllDTO
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="col-lg-12">
+    <div class="card mb-4">
+
+        <div class="card-body">
+            <h3>Halls</h3>
+            <a class="btn btn-success mb-3" asp-controller="PredmetProfession" asp-action="Create" asp-route-id="@Url.ActionContext.RouteData.Values["id"]">Create</a>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                    
+                            <th scope="col">Name</th>
+                            <th scope="col">Credit</th>
+                            <th scope="col">GeneralHours</th>
+                            <th scope="col">OutOfAuditoryHours</th>
+                            <th scope="col">AuditoryHours</th>
+                            <th scope="col">Lecturer</th>
+                            <th scope="col">Seminar</th>
+                            <th scope="col">Laboratory</th>
+                            <th scope="col">IsPrerequisite</th>
+                            <th scope="col">WeeklyLoad</th>
+                           
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.PredmetProfessions)
+                        {
+                        <tr>
+                           
+                            <td>@item.PredmetName</td>
+                            <td>@item.Credit</td>
+                            <td>@item.GeneralHours</td>
+                            <td>@item.OutOfAuditoryHours</td>
+                            <td>@item.AuditoryHours</td>
+                            <td>@item.Lecturer</td>
+                            <td>@item.Seminar</td>
+                            <td>@item.Laboratory</td>
+                            <td>@item.IsPrerequisite</td>
+                            <td>@item.WeeklyLoad</td>
+                         
+                            <td>
+                                @*<a class="btn btn-info" asp-controller="Predmet" asp-action="Detail" asp-route-id="@item.Id" >Detail</a>
+                                <a class="btn btn-warning" asp-controller="Predmet" asp-action="Update" asp-route-id="@item.Id" >Update</a>
+                                <a class="btn btn-danger delete-item" asp-controller="Predmet" asp-action="Delete" asp-route-id="@item.Id"  >Delete</a>*@
+                            </td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+ </div>
+
+ @section Scripts{
+     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $(".delete-item").click(function (ev) {
+                ev.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let link = $(this).attr("href")
+                        fetch(link).then(response => response.json()).then(data => {
+                            if (data.status == 200) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                setTimeout(() =>
+                                { location.reload(true) }, 1000);
+                            }
+                            else {
+                                Swal.fire(
+                                    'Error!',
+                                    'Your file not Found.',
+                                    'Failed'
+                                )
+                            }
+                        })
+                     
+                    }
+                })
+            })
+        })
+    </script>
+ } 

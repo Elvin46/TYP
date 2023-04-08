@@ -1,0 +1,150 @@
+﻿@using TYP.Service.DTOs.TeacherPredmetDTOs;
+@using TYP.Service.DTOs.PredmetGroupDTOs;
+@using TYP.Core.Entities;
+@model TeacherPredmetPostViewDTO
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="col-lg-12">
+    <div class="card mb-4">
+
+        <div class="card-body">
+            <h3>Sorgu</h3>
+            <a class="btn btn-success mb-3" asp-controller="PredmetProfession" asp-action="Create" asp-route-id="@Url.ActionContext.RouteData.Values["id"]">Create</a>
+            <h5>@Model.TeachersHours</h5>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                    
+                            <th scope="col">Code</th>
+                            <th scope="col">Predmet</th>
+                            <th scope="col">Group</th>
+                            <th scope="col">Course</th>
+                            <th scope="col">Profession</th>
+                            <th scope="col">Sector</th>
+                            <th scope="col">Credit</th>
+                            <th scope="col">GeneralHours</th>
+                            <th scope="col">AuditoryHours</th>
+                            <th scope="col">Session</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.PredmetGroups)
+                        {
+                            if (item.orderBy==0)
+                            {
+                               <tr>
+                                    <td>@item.Code</td>
+                                    @if (item.TeacherId!=null)
+                                   {
+                                        <td><a class="btn btn-success" asp-controller="TeacherPredmet" asp-action="Create" asp-route-teacherId="@Url.ActionContext.RouteData.Values["id"]" asp-route-predmetGroupId="@item.Id" >Detail</a> @item.PredmetName </td>
+                                       
+                                   }else{
+                                        <td><a class="btn btn-warning" asp-controller="TeacherPredmet" asp-action="Create" asp-route-teacherId="@Url.ActionContext.RouteData.Values["id"]" asp-route-predmetGroupId="@item.Id" >Detail</a> @item.PredmetName </td>
+                                   }
+                                    <td>@item.Group</td>
+                                    <td>@item.Course</td>
+                                    <td>@item.Profession</td>
+                                    <td>@item.Sector</td>
+                                    <td>@item.Credit</td>
+                                    <td>@item.GeneralHours</td>
+                                    <td>@item.AuditoryHours</td>
+                                    <td>@item.Session</td>
+                               </tr>
+                            }
+                        }
+                        @foreach (var orderby in Model.OrderBys)
+                        {
+                            List<PredmetGroupGetDTO> PPList = new List<PredmetGroupGetDTO>();
+                            foreach (var item in Model.PredmetGroups)
+                            {
+                                if (item.orderBy == orderby && item.CategoryId == 4)
+                                {
+                                    PPList.Add(item);
+                                }
+                            }
+                            @if (PPList.Count() != 0)
+                               {
+                                <tr>
+                                    <td>
+                                        @foreach (var item in PPList)
+                                        {
+                                            @item.Code;
+                                            <br />
+                                        }
+                                    </td>
+                                    <td>
+
+                                        @{var countPredmet = 1;}
+                                        @foreach (var item in PPList)
+                                        {
+                                            <a class="btn btn-info" asp-controller="TeacherPredmet" asp-action="Create" asp-route-teacherId="@Url.ActionContext.RouteData.Values["id"]" asp-route-predmetGroupId="@item.Id" >Detail</a>
+                                            <span >@countPredmet. @item.PredmetName</span>countPredmet++;
+                                            <br />
+                                        }
+                                    </td>
+                                    <td>@PPList[0].Group</td>
+                                    <td>@PPList[0].Course</td>
+                                    <td>@PPList[0].Profession</td>
+                                    <td>@PPList[0].Sector</td>
+                                    <td>@PPList[0].Credit</td>
+                                    <td>@PPList[0].GeneralHours</td>
+                                    <td>@PPList[0].AuditoryHours</td>
+                                    <td>@PPList[0].Session</td>
+                                </tr>
+                               }
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+ </div>
+
+ @section Scripts{
+     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $(".delete-item").click(function (ev) {
+                ev.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let link = $(this).attr("href")
+                        fetch(link).then(response => response.json()).then(data => {
+                            if (data.status == 200) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                )
+                                setTimeout(() =>
+                                { location.reload(true) }, 1000);
+                            }
+                            else {
+                                Swal.fire(
+                                    'Error!',
+                                    'Your file not Found.',
+                                    'Failed'
+                                )
+                            }
+                        })
+                     
+                    }
+                })
+            })
+        })
+    </script>
+ } 

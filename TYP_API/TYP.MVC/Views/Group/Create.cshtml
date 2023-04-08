@@ -1,0 +1,62 @@
+﻿@using TYP.Service.DTOs.GroupDTOs
+@model GroupPostDTO
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="fs-17 font-weight-600 mb-0">Create Scientific Name</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Number" class="font-weight-600">Number</label>
+                        <input class="form-control" placeholder="Number" asp-for="Number">
+                        <span asp-validation-for="Number" class="text-danger">  </span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="StudentsCount" class="font-weight-600">StudentsCount</label>
+                        <input class="form-control" placeholder="StudentsCount" asp-for="StudentsCount">
+                        <span asp-validation-for="StudentsCount" class="text-danger">  </span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Course" class="font-weight-600">Course</label>
+                        <input class="form-control" placeholder="Course" asp-for="Course">
+                        <span asp-validation-for="Course" class="text-danger">  </span>
+                    </div>
+                    <div class="form-group" id="CategoryDiv">
+                        <label asp-for="ProfessionId">Profession</label>
+                        <select class="form-control" name="ProfessionId">
+                            <option value="0">--Select Profession--</option>
+                            @foreach (var item in ViewBag.Professions.Professions)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" id="CategoryDiv">
+                        <label asp-for="SectorId">Sector</label>
+                        <select class="form-control" name="SectorId">
+                            <option value="0">--Select Sector--</option>
+                            @foreach (var item in ViewBag.Sectors.Sectors)
+                            {
+                                <option value="@item.Id">@item.Code</option>
+                            }
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    <a asp-action="Index" class="btn btn-light">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

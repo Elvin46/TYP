@@ -1,0 +1,39 @@
+﻿@model ScientificDegreeGetDTO
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="col-lg-6">
+    <div class="card mb-4">
+        <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h6 class="fs-17 font-weight-600 mb-0">Todo list</h6>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="dd" id="nestable2">
+                <ol class="dd-list">
+                    @if (Model.Teachers.Count == 0)
+                    {
+                        <h4 class="text-danger">Bu Elmi Dereceli Muellim Yoxdur</h4>
+                        
+                    }else{
+                        int num =1;
+                        @foreach (var item in Model.Teachers)
+                        {
+                            <li class="dd-item" data-id="13">
+                                <div class="dd-handle"><strong>@num</strong> - @item.Name @item.Surname @item.Fathername</div>
+                            </li>
+                        num++;
+                        }
+                    }
+                    
+                    
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+

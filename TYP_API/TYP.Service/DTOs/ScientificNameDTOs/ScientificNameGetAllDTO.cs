@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TYP.Service.DTOs.ScientificNameDTOs
+{
+    public class ScientificNameGetAllDTO
+    {
+        public List<ScientificNameGetDTO> ScientificNames { get; set; }
+        public int Count { get; set; }
+    }
+}

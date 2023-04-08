@@ -1,0 +1,125 @@
+﻿@using TYP.Service.DTOs.TeacherDTOs
+@model TeacherPostDTO
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="fs-17 font-weight-600 mb-0">Create Blog</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label asp-for="Name" class="font-weight-600">Name</label>
+                        <input class="form-control" placeholder="Name" asp-for="Name">
+                        <span asp-validation-for="Name" class="text-danger">  </span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Surname" class="font-weight-600">Surname</label>
+                        <input class="form-control" placeholder="Surname" asp-for="Surname">
+                        <span asp-validation-for="Surname" class="text-danger">  </span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Fathername" class="font-weight-600">Fathername</label>
+                        <input class="form-control" placeholder="Fathername" asp-for="Fathername">
+                        <span asp-validation-for="Fathername" class="text-danger">  </span>
+                    </div>
+                    <div class="form-group row">
+                        <label for="example-date-input" asp-for="BirthDate" class="col-sm-3 col-form-label font-weight-600">Date</label>
+                        <div class="col-sm-9">
+                            <input asp-for="BirthDate" class="form-control" type="date" value="2011-08-19" id="example-date-input">
+                            <span asp-validation-for="BirthDate" class="text-danger">  </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="font-weight-600">Email</label>
+                        <input class="form-control" type="email" placeholder="Email" asp-for="Email">
+                        <span asp-validation-for="Email" class="text-danger">  </span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber" class="font-weight-600">Phone Number</label>
+                        <input class="form-control" placeholder="PhoneNumber" asp-for="PhoneNumber">
+                        <span asp-validation-for="PhoneNumber" class="text-danger">  </span>
+                    </div>
+                    <div class="form-group" id="CategoryDiv">
+                        <label asp-for="SexId">Sex</label>
+                        <select class="form-control" name="SexId">
+                            <option value="0">--Select Sex--</option>
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+                            @*@foreach (var item in ViewBag.Halls)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+
+                            }*@
+                        </select>
+                    </div>
+                    <div class="form-group" id="CategoryDiv">
+                        <label asp-for="DepartmentId">Department</label>
+                        <select class="form-control" name="DepartmentId">
+                            <option value="0">--Select Department--</option>
+                            @foreach (var item in ViewBag.Departments.Departments)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" id="CategoryDiv">
+                        <label asp-for="JobTypeId">JobType</label>
+                        <select class="form-control" name="JobTypeId">
+                            <option value="0">--Select JobType--</option>
+                            @foreach (var item in ViewBag.JobTypes.JobTypes)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group" id="CategoryDiv">
+                        <label asp-for="ScientificDegreeId">ScientificDegree</label>
+                        <select class="form-control" name="ScientificDegreeId">
+                            <option value="0">--Select ScientificDegree--</option>
+                            <option value="3">Yoxdur</option>
+                            <option value="1">Riyaziyyat uzre Felsefe Doktoru</option>
+                            <option value="2">Informatika uzre Felsefe Doktoru</option>
+                            <option value="4">Iqtisad uzre Felsefe Doktoru</option>
+                            <option value="5">Texnika Elmleri Namizadi</option>
+                            @*@foreach (var item in ViewBag.Halls)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+
+                            }*@
+                        </select>
+                    </div>
+                    <div class="form-group" id="CategoryDiv">
+                        <label asp-for="ScientificNameId">ScientificName</label>
+                        <select class="form-control" name="ScientificNameId">
+                            <option value="0">--Select ScientificName--</option>
+                            <option value="3">Yoxdur</option>
+                            <option value="1">Dosent</option>
+                            <option value="2">Aspirant</option>
+                            <option value="4">Magist</option>
+                            @*@foreach (var item in ViewBag.Halls)
+                            {
+                                <option value="@item.Id">@item.Name</option>
+
+                            }*@
+                        </select>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    <a asp-action="Index" class="btn btn-light">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

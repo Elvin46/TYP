@@ -1,0 +1,185 @@
+﻿@using TYP.Service.DTOs.PredmetProfessionDTOs
+@model PredmetProfessionPostDTO
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="fs-17 font-weight-600 mb-0">Create Predmet</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <input class="form-control" type="hidden" placeholder="ProfessionId" asp-for="ProfessionId" value="@Url.ActionContext.RouteData.Values["id"]">
+                    <div class="form-group" id="CategoryDiv">
+                        <label asp-for="CategoryId">Category</label>
+                        <select class="form-control select_category" onchange="getSelectedValue()" name="CategoryId">
+                            <option value="0">--Select Category--</option>
+                            <option value="1">Ümumi fənlər</option>
+                            <option value="2">Seçmə fənlər (ümumi fənlər üzrə)</option>
+                            <option value="3">İxtisas fənləri</option>
+                            <option value="4">Seçmə fənlər (ixtisas fənləri üzrə)</option>
+                            
+                        </select>
+                    </div>
+                    <div id="predmets" class="d-flex flex-column">
+                        <div class="d-flex">
+                            <div style="width:50%;" class="form-group" id="CategoryDiv">
+                                <label asp-for="PredmetIds">Predmet</label>
+                                <select class="form-control" name="PredmetIds">
+                                    <option value="0">--Select Predmet--</option>
+                                    @foreach (var item in ViewBag.Predmets.Predmets)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div style="width:50%;" class="form-group">
+                                <label asp-for="Codes" class="font-weight-600">Code</label>
+                                <input class="form-control" placeholder="Code" asp-for="Codes" type="number">
+                                <span asp-validation-for="Codes" class="text-danger">  </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Credit" class="font-weight-600">Credit</label>
+                        <input class="form-control" placeholder="Credit" asp-for="Credit">
+                        <span asp-validation-for="Credit" class="text-danger">  </span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="GeneralHours" class="font-weight-600">GeneralHours</label>
+                        <input class="form-control" placeholder="GeneralHours" asp-for="GeneralHours">
+                        <span asp-validation-for="GeneralHours" class="text-danger">  </span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OutOfAuditoryHours" class="font-weight-600">OutOfAuditoryHours</label>
+                        <input class="form-control" placeholder="OutOfAuditoryHours" asp-for="OutOfAuditoryHours">
+                        <span asp-validation-for="OutOfAuditoryHours" class="text-danger">  </span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="AuditoryHours" class="font-weight-600">AuditoryHours</label>
+                        <input class="form-control" placeholder="AuditoryHours" asp-for="AuditoryHours">
+                        <span asp-validation-for="AuditoryHours" class="text-danger">  </span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Lecturer" class="font-weight-600">Lecturer</label>
+                        <input class="form-control" placeholder="Lecturer" asp-for="Lecturer">
+                        <span asp-validation-for="Lecturer" class="text-danger">  </span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Seminar" class="font-weight-600">Seminar</label>
+                        <input class="form-control" placeholder="Seminar" asp-for="Seminar">
+                        <span asp-validation-for="Seminar" class="text-danger">  </span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Laboratory" class="font-weight-600">Laboratory</label>
+                        <input class="form-control" placeholder="Laboratory" asp-for="Laboratory">
+                        <span asp-validation-for="Laboratory" class="text-danger">  </span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IsPrerequisite" class="font-weight-600">IsPrerequisite</label>
+                        <input class="form-control" placeholder="IsPrerequisite" asp-for="IsPrerequisite">
+                        <span asp-validation-for="IsPrerequisite" class="text-danger">  </span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="WeeklyLoad" class="font-weight-600">WeeklyLoad</label>
+                        <input class="form-control" placeholder="Lecturer" asp-for="WeeklyLoad">
+                        <span asp-validation-for="WeeklyLoad" class="text-danger">  </span>
+                    </div>
+                    <div class="form-group" id="CategoryDiv">
+                        <label asp-for="SessionId">Session</label>
+                        <select class="form-control select_category"  name="SessionId">
+                            <option value="0">--Select Session--</option>
+                            <option value="1">P-1</option>
+                            <option value="3">P-2</option>
+                            <option value="5">P-3</option>
+                            <option value="7">P-4</option>
+                            <option value="2">Y-1</option>
+                            <option value="4">Y-2</option>
+                            <option value="6">Y-3</option>
+                            <option value="8">Y-4</option>
+                            
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    <a asp-controller="Profession" asp-action="Detail" asp-route-id="@Url.ActionContext.RouteData.Values["id"]" class="btn btn-light">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+    function getSelectedValue() {
+        var select = document.querySelector(".select_category");
+        var predmets = document.querySelector("#predmets");
+        var selectedValue = select.value;
+        if(selectedValue == 4){
+            predmets.innerHTML = `<h3 style="width:100%;">1.Secme Fenn</h3>
+                        <div class="d-flex">
+                            <div style="width:50%;" class="form-group" id="CategoryDiv">
+                                <label asp-for="PredmetIds">Predmet</label>
+                                <select class="form-control" name="PredmetIds">
+                                    <option value="0">--Select Predmet--</option>
+                                    @foreach (var item in ViewBag.Predmets.Predmets)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div style="width:50%;" class="form-group">
+                                <label asp-for="Codes" class="font-weight-600">Code</label>
+                                <input class="form-control" placeholder="Code" name="Codes" asp-for="Codes">
+                                <span asp-validation-for="Codes" class="text-danger">  </span>
+                            </div>
+                        </div>
+                        <h3 style="width:100%;">2.Secme Fenn</h3>
+                        <div class="d-flex">
+                            <div style="width:50%;" class="form-group" id="CategoryDiv">
+                                <label asp-for="PredmetIds">Predmet</label>
+                                <select class="form-control" name="PredmetIds">
+                                    <option value="0">--Select Predmet--</option>
+                                    @foreach (var item in ViewBag.Predmets.Predmets)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div style="width:50%;" class="form-group">
+                                <label asp-for="Codes" class="font-weight-600">Code</label>
+                                <input class="form-control" placeholder="Code" name="Codes" asp-for="Codes">
+                                <span asp-validation-for="Codes" class="text-danger">  </span>
+                            </div>
+                        </div>
+                        <h3 style="width:100%;">3.Secme Fenn</h3>
+                        <div class="d-flex">
+                            <div style="width:50%;" class="form-group" id="CategoryDiv">
+                                <label asp-for="PredmetIds">Predmet</label>
+                                <select class="form-control" name="PredmetIds">
+                                    <option value="0">--Select Predmet--</option>
+                                    @foreach (var item in ViewBag.Predmets.Predmets)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div style="width:50%;" class="form-group">
+                                <label asp-for="Codes" class="font-weight-600">Code</label>
+                                <input class="form-control" placeholder="Codes" name="Codes" asp-for="Codes">
+                                <span asp-validation-for="Codes" class="text-danger">  </span>
+                            </div>
+                        </div>`;
+        }
+      }
+    
+    </script>
+}

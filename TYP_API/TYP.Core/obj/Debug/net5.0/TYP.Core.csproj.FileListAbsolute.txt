@@ -1,0 +1,12 @@
+C:\Users\HP\Desktop\TYP_API\TYP.Core\bin\Debug\net5.0\TYP.Core.deps.json
+C:\Users\HP\Desktop\TYP_API\TYP.Core\bin\Debug\net5.0\TYP.Core.dll
+C:\Users\HP\Desktop\TYP_API\TYP.Core\bin\Debug\net5.0\ref\TYP.Core.dll
+C:\Users\HP\Desktop\TYP_API\TYP.Core\bin\Debug\net5.0\TYP.Core.pdb
+C:\Users\HP\Desktop\TYP_API\TYP.Core\obj\Debug\net5.0\TYP.Core.csproj.AssemblyReference.cache
+C:\Users\HP\Desktop\TYP_API\TYP.Core\obj\Debug\net5.0\TYP.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Desktop\TYP_API\TYP.Core\obj\Debug\net5.0\TYP.Core.AssemblyInfoInputs.cache
+C:\Users\HP\Desktop\TYP_API\TYP.Core\obj\Debug\net5.0\TYP.Core.AssemblyInfo.cs
+C:\Users\HP\Desktop\TYP_API\TYP.Core\obj\Debug\net5.0\TYP.Core.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\TYP_API\TYP.Core\obj\Debug\net5.0\TYP.Core.dll
+C:\Users\HP\Desktop\TYP_API\TYP.Core\obj\Debug\net5.0\ref\TYP.Core.dll
+C:\Users\HP\Desktop\TYP_API\TYP.Core\obj\Debug\net5.0\TYP.Core.pdb

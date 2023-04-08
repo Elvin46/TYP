@@ -1,0 +1,17 @@
+C:\Users\HP\Desktop\TYP_API\TYP.Service\bin\Debug\net5.0\TYP.Service.deps.json
+C:\Users\HP\Desktop\TYP_API\TYP.Service\bin\Debug\net5.0\TYP.Service.dll
+C:\Users\HP\Desktop\TYP_API\TYP.Service\bin\Debug\net5.0\ref\TYP.Service.dll
+C:\Users\HP\Desktop\TYP_API\TYP.Service\bin\Debug\net5.0\TYP.Service.pdb
+C:\Users\HP\Desktop\TYP_API\TYP.Service\bin\Debug\net5.0\TYP.Core.dll
+C:\Users\HP\Desktop\TYP_API\TYP.Service\bin\Debug\net5.0\TYP.Data.dll
+C:\Users\HP\Desktop\TYP_API\TYP.Service\bin\Debug\net5.0\TYP.Data.pdb
+C:\Users\HP\Desktop\TYP_API\TYP.Service\bin\Debug\net5.0\TYP.Core.pdb
+C:\Users\HP\Desktop\TYP_API\TYP.Service\obj\Debug\net5.0\TYP.Service.csproj.AssemblyReference.cache
+C:\Users\HP\Desktop\TYP_API\TYP.Service\obj\Debug\net5.0\TYP.Service.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Desktop\TYP_API\TYP.Service\obj\Debug\net5.0\TYP.Service.AssemblyInfoInputs.cache
+C:\Users\HP\Desktop\TYP_API\TYP.Service\obj\Debug\net5.0\TYP.Service.AssemblyInfo.cs
+C:\Users\HP\Desktop\TYP_API\TYP.Service\obj\Debug\net5.0\TYP.Service.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\TYP_API\TYP.Service\obj\Debug\net5.0\TYP.Service.csproj.CopyComplete
+C:\Users\HP\Desktop\TYP_API\TYP.Service\obj\Debug\net5.0\TYP.Service.dll
+C:\Users\HP\Desktop\TYP_API\TYP.Service\obj\Debug\net5.0\ref\TYP.Service.dll
+C:\Users\HP\Desktop\TYP_API\TYP.Service\obj\Debug\net5.0\TYP.Service.pdb
